@@ -8,7 +8,7 @@ export default {
   ): ApplicationState {
     let newState = Object.assign({}, state);
     switch (action.type) {
-      case actions.EXAMPLE_ACTION:
+      case actions.LOGIN_ATTEMPT:
         break;
       default:
         newState = state;
@@ -19,6 +19,7 @@ export default {
 };
 
 export interface ApplicationState {
-    exampleString: string;
-    exampleBoolean: boolean
+    isAuthenticated: boolean;
+    username: string,
+    password: string,
 }
