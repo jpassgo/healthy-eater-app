@@ -1,5 +1,5 @@
-import { State } from '../config/store';
-import React from 'react';
+import { State } from "../config/store";
+import React from "react";
 import {
   Button,
   makeStyles,
@@ -9,19 +9,19 @@ import {
   ListItemText,
   Divider,
   SwipeableDrawer,
-} from '@material-ui/core';
-import { connect } from 'react-redux';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+} from "@material-ui/core";
+import { connect } from "react-redux";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
 
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 
 const useStyles = makeStyles({
   list: {
     width: 250,
   },
   fullList: {
-    width: 'auto',
+    width: "auto",
   },
 });
 
@@ -31,16 +31,14 @@ const NavigationDrawer = (navigationDrawerProps: NavigationDrawerProps) => {
     isMenuOpen: false,
   });
 
-  const isMenuOpen = false;
-
   const toggleDrawer = (open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent
   ) => {
     if (
       event &&
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
+      event.type === "keydown" &&
+      ((event as React.KeyboardEvent).key === "Tab" ||
+        (event as React.KeyboardEvent).key === "Shift")
     ) {
       return;
     }
@@ -48,37 +46,34 @@ const NavigationDrawer = (navigationDrawerProps: NavigationDrawerProps) => {
     setState({ ...state, isMenuOpen: open });
   };
 
-  const list = () => (
-    <div
-      role='presentation'
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {['Login', 'Account', 'Report Meal', 'Calorie Search'].map(
-          (text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          )
-        )}
-      </List>
-      <Divider />
-    </div>
-  );
-
   return (
     <div>
-      <React.Fragment key={'Menu'}>
+      <React.Fragment key={"menu"}>
         <Button onClick={toggleDrawer(true)}>Menu</Button>
         <SwipeableDrawer
-          open={isMenuOpen}
+          open={state["isMenuOpen"]}
           onClose={toggleDrawer(false)}
           onOpen={toggleDrawer(true)}
-        ></SwipeableDrawer>
+        >
+          <div
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+          >
+            <List>
+              {["Login", "Account", "Report Meal", "Calorie Search"].map(
+                (text, index) => (
+                  <ListItem button key={text}>
+                    <ListItemIcon>
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                )
+              )}
+            </List>
+          </div>
+        </SwipeableDrawer>
       </React.Fragment>
     </div>
   );
