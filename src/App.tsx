@@ -6,7 +6,7 @@ import MomentUtils from "@date-io/moment";
 import createMuiTheme, { Theme } from "@material-ui/core/styles/createMuiTheme";
 import { State } from "./config/store";
 import { connect } from "react-redux";
-import NavigationBar from "./components/NavigationBar";
+import NavigationBar from "./components/NavigationDrawer";
 
 export function getLightTheme(): Theme {
   return createMuiTheme();
