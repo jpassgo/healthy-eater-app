@@ -13,8 +13,9 @@ import {
 import { connect } from "react-redux";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-
 import { Dispatch } from "redux";
+import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles({
   list: {
@@ -26,10 +27,22 @@ const useStyles = makeStyles({
 });
 
 const NavigationDrawer = (navigationDrawerProps: NavigationDrawerProps) => {
+  const history = useHistory();
   const classes = useStyles();
   const [state, setState] = React.useState({
     isMenuOpen: false,
   });
+
+  const routes = new Map([
+    ["Home", "/"],
+    ["Login", "/login"]
+  ]);
+
+  const redirect = (route: string): any  => {
+    console.log(`route: ${route}`);
+    console.log(`path: ${routes.get(route)}`);
+    history.push(`${routes.get(route)}`);
+  }
 
   const toggleDrawer = (open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent
@@ -61,14 +74,14 @@ const NavigationDrawer = (navigationDrawerProps: NavigationDrawerProps) => {
             onKeyDown={toggleDrawer(false)}
           >
             <List>
-              {["Login", "Account", "Report Meal", "Calorie Search"].map(
-                (text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
+              {["Home", "Account", "Report Meal", "Calorie Search", "Login"].map(
+                (text, index) => (                    
+                      <ListItem button key={text} onClick={() => redirect(text)}>
+                        <ListItemIcon>
+                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                        </ListItemIcon>
+                        <ListItemText primary={text} />
+                      </ListItem>                  
                 )
               )}
             </List>
