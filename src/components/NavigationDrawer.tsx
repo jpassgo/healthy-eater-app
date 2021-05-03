@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 
 const NavigationDrawer = (navigationDrawerProps: NavigationDrawerProps) => {
   const history = useHistory();
-  const classes = useStyles();
+  
   const [state, setState] = React.useState({
     isMenuOpen: false,
   });
@@ -39,8 +39,6 @@ const NavigationDrawer = (navigationDrawerProps: NavigationDrawerProps) => {
   ]);
 
   const redirect = (route: string): any  => {
-    console.log(`route: ${route}`);
-    console.log(`path: ${routes.get(route)}`);
     history.push(`${routes.get(route)}`);
   }
 
