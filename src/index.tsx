@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import "./index.css";
 import reportWebVitals from './reportWebVitals';
 import { Router, Route } from 'react-router';
 import { Provider } from 'react-redux';
@@ -17,15 +18,15 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>     
       <Router history={history}>
-        <NavigationDrawer />
-        <Route path={routes.HOME_PAGE}>
-          <App />
-        </Route>
-        <Route path={routes.LOGIN_PAGE}>
-          <LoginPage />
-        </Route>      
+        <NavigationDrawer />        
+          <Route path={routes.HOME_PAGE}>
+            <App />
+          </Route>
+          <Route path={routes.LOGIN_PAGE}>
+            <LoginPage />
+          </Route>          
       </Router>
-    </Provider>
+    </Provider>  
   </React.StrictMode>,
   document.getElementById('root')
 );
