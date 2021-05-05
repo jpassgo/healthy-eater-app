@@ -13,11 +13,9 @@ export function getLightTheme(): Theme {
 }
 
 const App = (props: AppProps): JSX.Element => {
-  return (
-    <div style={{backgroundColor: "grey"}}>
+  return (  
       <MuiThemeProvider theme={getLightTheme()}>    
-      </MuiThemeProvider>
-    </div>
+      </MuiThemeProvider>    
   );
 };
 
