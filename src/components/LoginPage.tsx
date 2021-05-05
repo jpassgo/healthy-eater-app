@@ -24,7 +24,7 @@ const styles = makeStyles(() => ({
   title: {
     fontSize: 14,
   },
-  pos: {
+  pos: {    
     marginBottom: 12,
   }
 }));
@@ -60,6 +60,14 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
 
   return (
     
+    <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "25vh",          
+        }}
+      >
         <Grid
           container
           direction={"column"}
@@ -100,7 +108,7 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
             </CardContent>
          </Card>
         </Grid>
-     
+        </div>
   );
 };
 
