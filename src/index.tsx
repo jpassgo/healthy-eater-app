@@ -12,20 +12,12 @@ import routes from './constants/routes';
 import NavigationDrawer from './components/NavigationDrawer';
 
 const history = createBrowserHistory(),
-  store = createStore(history)
+store = createStore(history)
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>     
-      <Router history={history}>
-        <NavigationDrawer />        
-          <Route path={routes.HOME_PAGE}>
-            <App />
-          </Route>
-          <Route path={routes.LOGIN_PAGE}>
-            <LoginPage />
-          </Route>          
-      </Router>
+      <App />
     </Provider>  
   </React.StrictMode>,
   document.getElementById('root')
