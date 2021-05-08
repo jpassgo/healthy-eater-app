@@ -1,5 +1,4 @@
-import { State } from "../config/store";
-import React from "react";
+import React from 'react';
 import {
   Button,
   makeStyles,
@@ -7,49 +6,39 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider,
   SwipeableDrawer,
-} from "@material-ui/core";
-import { connect } from "react-redux";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import { Dispatch } from "redux";
-import { useHistory } from "react-router-dom";
+} from '@material-ui/core';
+import { connect } from 'react-redux';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
+import { Dispatch } from 'redux';
+import { useHistory } from 'react-router-dom';
+import { State } from '../config/store';
 
-
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: "auto",
-  },
-});
-
-const NavigationDrawer = (navigationDrawerProps: NavigationDrawerProps) => {
+const NavigationDrawer = () => {
   const history = useHistory();
-  
+
   const [state, setState] = React.useState({
     isMenuOpen: false,
   });
 
   const routes = new Map([
-    ["Home", "/"],
-    ["Login", "/login"]
+    ['Home', '/'],
+    ['Login', '/login'],
   ]);
 
-  const redirect = (route: string): any  => {
+  const redirect = (route: string): any => {
     history.push(`${routes.get(route)}`);
-  }
+  };
 
   const toggleDrawer = (open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent
+    event: React.KeyboardEvent | React.MouseEvent,
   ) => {
     if (
-      event &&
-      event.type === "keydown" &&
-      ((event as React.KeyboardEvent).key === "Tab" ||
-        (event as React.KeyboardEvent).key === "Shift")
+      event
+      && event.type === 'keydown'
+      && ((event as React.KeyboardEvent).key === 'Tab'
+        || (event as React.KeyboardEvent).key === 'Shift')
     ) {
       return;
     }
@@ -59,10 +48,10 @@ const NavigationDrawer = (navigationDrawerProps: NavigationDrawerProps) => {
 
   return (
     <div>
-      <React.Fragment key={"menu"}>
+      <React.Fragment key="menu">
         <Button onClick={toggleDrawer(true)}>Menu</Button>
         <SwipeableDrawer
-          open={state["isMenuOpen"]}
+          open={state.isMenuOpen}
           onClose={toggleDrawer(false)}
           onOpen={toggleDrawer(true)}
         >
@@ -72,15 +61,15 @@ const NavigationDrawer = (navigationDrawerProps: NavigationDrawerProps) => {
             onKeyDown={toggleDrawer(false)}
           >
             <List>
-              {["Home", "Account", "Report Meal", "Calorie Search", "Login"].map(
-                (text, index) => (                    
-                      <ListItem button key={text} onClick={() => redirect(text)}>
-                        <ListItemIcon>
-                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                      </ListItem>                  
-                )
+              {['Home', 'Account', 'Report Meal', 'Calorie Search', 'Login'].map(
+                (text, index) => (
+                  <ListItem button key={text} onClick={() => redirect(text)}>
+                    <ListItemIcon>
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                ),
               )}
             </List>
           </div>
@@ -94,14 +83,10 @@ interface NavigationDrawerProps {
   isAuthenticated: boolean;
 }
 
-const mapStateToProps = (state: State): NavigationDrawerProps => {
-  return ({
-    isAuthenticated: state.applicationState.isAuthenticated,
-  } as unknown) as NavigationDrawerProps;
-};
+const mapStateToProps = (state: State): NavigationDrawerProps => ({
+  isAuthenticated: state.applicationState.isAuthenticated,
+} as unknown) as NavigationDrawerProps;
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return ({} as unknown) as NavigationDrawerProps;
-};
+const mapDispatchToProps = () => ({} as unknown) as NavigationDrawerProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationDrawer);

@@ -1,15 +1,15 @@
-import { ChangeEvent, useState } from "react";
-import { Dispatch } from "redux";
-import Grid from "@material-ui/core/Grid";
-import React from "react";
+import React, { ChangeEvent, useState } from 'react';
+import { Dispatch } from 'redux';
+import Grid from '@material-ui/core/Grid';
+
 import Card from '@material-ui/core/Card';
-import { TextField, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { TextField, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
-import { State } from "../config/store";
-import { connect } from "react-redux";
-import { loginAttempt } from "../creators/login";
-import Typography from "@material-ui/core/Typography";
+import { connect } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
+import { State } from '../config/store';
+import { loginAttempt } from '../creators/login';
 
 const styles = makeStyles(() => ({
   gridContainer: {},
@@ -24,9 +24,9 @@ const styles = makeStyles(() => ({
   title: {
     fontSize: 14,
   },
-  pos: {    
+  pos: {
     marginBottom: 12,
-  }
+  },
 }));
 
 interface LoginPageState {
@@ -37,8 +37,8 @@ interface LoginPageState {
 const LoginPage = (props: LoginPageProps): JSX.Element => {
   const classes = styles();
   const [state, setState] = useState<LoginPageState>({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -56,59 +56,57 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
     props.handleLoginClick(state.username, state.password);
   };
 
-  
-
   return (
-    
+
     <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "25vh",          
-        }}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '25vh',
+      }}
+    >
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        justify="center"
       >
-        <Grid
-          container
-          direction={"column"}
-          alignItems={"center"}
-          justify={"center"}
-        >
 
-          <Card className={classes.root} >
-            <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-                Login
-              </Typography>
-              <form>
-                <Grid item>
-                  <TextField
-                    id="outlined-username-input"
-                    label="Username"
-                    autoComplete="current-username"
-                    variant="outlined"
-                  />
-                </Grid>
+        <Card className={classes.root}>
+          <CardContent>
+            <Typography className={classes.title} color="textSecondary" gutterBottom>
+              Login
+            </Typography>
+            <form>
+              <Grid item>
+                <TextField
+                  id="outlined-username-input"
+                  label="Username"
+                  autoComplete="current-username"
+                  variant="outlined"
+                />
+              </Grid>
 
-                <Grid item>
-                  <TextField
-                    id="outlined-password-input"
-                    label="Password"
-                    type="password"
-                    autoComplete="current-password"
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item>
-                  <Button variant="contained" color="secondary">
-                    Login
-                  </Button>
-                </Grid>
-              </form>
-            </CardContent>
-         </Card>
-        </Grid>
-        </div>
+              <Grid item>
+                <TextField
+                  id="outlined-password-input"
+                  label="Password"
+                  type="password"
+                  autoComplete="current-password"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item>
+                <Button variant="contained" color="secondary">
+                  Login
+                </Button>
+              </Grid>
+            </form>
+          </CardContent>
+        </Card>
+      </Grid>
+    </div>
   );
 };
 
@@ -116,20 +114,16 @@ export interface LoginPageProps {
   handleLoginClick: (username: string, password: string) => void;
 }
 
-const mapStateToProps = (state: State): LoginPageProps => {
-  return {
-    handleLoginClick: (username: string, password: string) => {
-      console.log("hello");
-    },
-  };
-};
+const mapStateToProps = (state: State): LoginPageProps => ({
+  handleLoginClick: (username: string, password: string) => {
+    console.log('hello');
+  },
+});
 
-const mapDispatchToProps = (dispatch: Dispatch): LoginPageProps => {
-  return ({
-    handleLoginClick: (username: string, password: string) => {
-      dispatch(loginAttempt(username, password));
-    },
-  } as unknown) as LoginPageProps;
-};
+const mapDispatchToProps = (dispatch: Dispatch): LoginPageProps => ({
+  handleLoginClick: (username: string, password: string) => {
+    dispatch(loginAttempt(username, password));
+  },
+} as unknown) as LoginPageProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
