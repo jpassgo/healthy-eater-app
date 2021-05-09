@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import MomentUtils from '@date-io/moment';
 import createMuiTheme, { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { connect } from 'react-redux';
 import { createBrowserHistory } from 'history';
@@ -17,7 +15,7 @@ export function getLightTheme(): Theme {
 
 const history = createBrowserHistory();
 
-const App = (props: AppProps): JSX.Element => (
+const App = (): JSX.Element => (
   <MuiThemeProvider theme={getLightTheme()}>
     <Router history={history}>
       <NavigationDrawer />
