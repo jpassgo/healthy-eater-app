@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Button,
-  makeStyles,
   List,
   ListItem,
   ListItemIcon,
@@ -10,9 +9,8 @@ import {
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import { Dispatch } from 'redux';
 import { useHistory } from 'react-router-dom';
+import MailIcon from '@material-ui/icons/Mail';
 import { State } from '../config/store';
 
 const NavigationDrawer = () => {
