@@ -47,7 +47,7 @@ const NavigationDrawer = () => {
   return (
     <div>
       <React.Fragment key="menu">
-        <Button onClick={toggleDrawer(true)}>Menu</Button>
+        <Button onClick={toggleDrawer(true)} variant="outlined" color="secondary" size="large">Menu</Button>
         <SwipeableDrawer
           open={state.isMenuOpen}
           onClose={toggleDrawer(false)}
