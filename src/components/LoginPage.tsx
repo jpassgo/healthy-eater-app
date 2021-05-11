@@ -76,7 +76,7 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
         <Card className={classes.root}>
           <CardContent>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
-              Login
+              Healthy Eater
             </Typography>
             <form>
               <Grid item>
