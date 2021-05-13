@@ -45,6 +45,7 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
   });
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(`${event.target.name} - ${event.target.value}`);
     setState({
       ...state,
       [event.target.name]: event.target.value,
@@ -52,9 +53,7 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
   };
 
   const handleLoginClick = (event: React.MouseEvent<HTMLElement>): void => {
-    if (event) {
-      event.preventDefault();
-    }
+    event.preventDefault();
 
     props.handleLoginClick(state.username, state.password);
   };
@@ -86,8 +85,10 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
                 <TextField
                   id="outlined-username-input"
                   label="Username"
-                  autoComplete="current-username"
+                  name="username"
                   variant="outlined"
+                  onChange={handleTextChange}
+                  value={state.username}
                 />
               </Grid>
 
@@ -96,8 +97,10 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
                   id="outlined-password-input"
                   label="Password"
                   type="password"
-                  autoComplete="current-password"
+                  name="password"
                   variant="outlined"
+                  onChange={handleTextChange}
+                  value={state.password}
                 />
               </Grid>
               <Grid item>
@@ -125,6 +128,7 @@ const mapStateToProps = (state: State): LoginPageProps => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): LoginPageProps => ({
   handleLoginClick: (username: string, password: string) => {
+    console.log(`${authenticateUser(username, password)}`);
     dispatch(loginAttempt(username, password));
   },
 } as unknown) as LoginPageProps;
