@@ -10,11 +10,14 @@ import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import { State } from '../config/store';
 import { loginAttempt } from '../creators/login';
+import authenticateUser from '../services/healthy-eater-api';
 
 const styles = makeStyles(() => ({
   gridContainer: {},
   root: {
-    maxWidth: 275,
+    minWidth: 250,
+    minHeight: 250,
+
   },
   bullet: {
     display: 'inline-block',
@@ -98,7 +101,7 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
                 />
               </Grid>
               <Grid item>
-                <Button variant="contained" color="secondary">
+                <Button variant="contained" color="secondary" onClick={handleLoginClick}>
                   Login
                 </Button>
               </Grid>
@@ -116,7 +119,7 @@ export interface LoginPageProps {
 
 const mapStateToProps = (state: State): LoginPageProps => ({
   handleLoginClick: (username: string, password: string) => {
-    console.log('hello');
+    console.log(`${authenticateUser(username, password)}`);
   },
 });
 
