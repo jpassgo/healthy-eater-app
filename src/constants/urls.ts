@@ -1,3 +1,3 @@
 export default {
-  healthyEaterApi: 'healthhttp://localhost:8080',
+  healthyEaterApi: 'http://localhost:8080',
 };
