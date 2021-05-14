@@ -9,6 +9,8 @@ export default {
     let newState = { ...state };
     switch (action.type) {
       case actions.LOGIN_ATTEMPT:
+        newState.username = action.username;
+        newState.password = action.password;
         break;
       default:
         newState = state;
