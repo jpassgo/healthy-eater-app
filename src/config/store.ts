@@ -3,7 +3,7 @@ import {
 } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { History } from 'history';
-import { routerMiddleware } from 'react-router-redux';
+import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { connectRouter } from 'connected-react-router';
 import application, { ApplicationState } from '../reducers/application';
 
@@ -15,6 +15,7 @@ export const createStore = (history: History): Store => {
   const allReducers = combineReducers({
     applicationState: application.reducer,
     router: connectRouter(history),
+    routing: routerReducer,
   });
 
   return createStoreFunc(allReducers, {
