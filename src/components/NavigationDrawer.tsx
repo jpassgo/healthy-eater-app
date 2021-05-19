@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 import MailIcon from '@material-ui/icons/Mail';
 import { State } from '../config/store';
 
-const NavigationDrawer = () => {
+const NavigationDrawer = (props: NavigationDrawerProps) => {
   const history = useHistory();
 
   const [state, setState] = React.useState({
@@ -26,7 +26,11 @@ const NavigationDrawer = () => {
   ]);
 
   const redirect = (route: string): any => {
-    history.push(`${routes.get(route)}`);
+    if (props.isAuthenticated || route === 'Login') {
+      history.push(`${routes.get(route)}`);
+    } else {
+      history.push('/login');
+    }
   };
 
   const toggleDrawer = (open: boolean) => (
