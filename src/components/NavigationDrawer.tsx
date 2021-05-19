@@ -71,7 +71,7 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
             onKeyDown={toggleDrawer(false)}
           >
             <List>
-              {['Home', 'Account', 'Report Meal', 'Calorie Search', 'Login'].map(
+              {['Home', 'Account', 'Report Meal', 'Calorie Search', 'Login', 'Create Account'].map(
                 (text, index) => (
                   <ListItem button key={text} onClick={() => redirect(text)}>
                     <ListItemIcon>
