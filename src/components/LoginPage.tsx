@@ -45,7 +45,6 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
   });
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(`${event.target.name} - ${event.target.value}`);
     setState({
       ...state,
       [event.target.name]: event.target.value,
@@ -121,14 +120,11 @@ export interface LoginPageProps {
 }
 
 const mapStateToProps = (state: State): LoginPageProps => ({
-  handleLoginClick: (username: string, password: string) => {
-    console.log(`${authenticateUser(username, password)}`);
-  },
+  handleLoginClick: (username: string, password: string) => {},
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): LoginPageProps => ({
   handleLoginClick: (username: string, password: string) => {
-    console.log(`${authenticateUser(username, password)}`);
     dispatch(loginAttempt(username, password));
   },
 } as unknown) as LoginPageProps;
