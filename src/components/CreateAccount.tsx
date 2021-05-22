@@ -20,7 +20,7 @@ interface CreateAccountPageState {
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const CreateAccountPage = (props: CreateAccountPageProps): JSX.Element => {
   const classes = styles();
-  const [state, setState] = useState<LoginPageState>({
+  const [state, setState] = useState<CreateAccountPageState>({
     username: '',
     password: '',
   });
