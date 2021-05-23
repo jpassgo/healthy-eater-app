@@ -104,7 +104,7 @@ const CreateAccountPage = (props: CreateAccountPageProps): JSX.Element => {
                   onChange={handleTextChange}
                   value={state.lastName}
                 />
-              </Grid>                        
+              </Grid>
 
               <Grid item>
                 <TextField
@@ -135,7 +135,7 @@ interface CreateAccountPageProps {
 }
 
 const mapStateToProps = (state: State): CreateAccountPageProps => ({
-  handleCreateAccountClick: (username: string, password: string, firstName: string, lastName: string, emailAddress: string, ) => {},
+  handleCreateAccountClick: (username: string, password: string, firstName: string, lastName: string, emailAddress: string) => {},
 } as unknown) as CreateAccountPageProps;
 
 const mapDispatchToProps = (): CreateAccountPageProps => ({
