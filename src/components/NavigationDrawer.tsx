@@ -23,6 +23,7 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
   const routes = new Map([
     ['Home', '/'],
     ['Login', '/login'],
+    ['Create Acount', '/create'],
   ]);
 
   const redirect = (route: string): any => {
