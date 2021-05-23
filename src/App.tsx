@@ -8,6 +8,7 @@ import NavigationDrawer from './components/NavigationDrawer';
 import { State } from './config/store';
 import LoginPage from './components/LoginPage';
 import routes from './constants/routes';
+import CreateAccountPage from './components/CreateAccountPage';
 
 export function getLightTheme(): Theme {
   return createMuiTheme();
@@ -22,6 +23,9 @@ const App = (): JSX.Element => (
       <Route path={routes.HOME_PAGE} />
       <Route path={routes.LOGIN_PAGE}>
         <LoginPage />
+      </Route>
+      <Route path={routes.CREATE_ACCOUNT_PAGE}>
+        <CreateAccountPage />
       </Route>
     </Router>
   </MuiThemeProvider>
