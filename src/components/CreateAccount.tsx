@@ -9,6 +9,26 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { State } from '../config/store';
 
+const styles = makeStyles(() => ({
+  gridContainer: {},
+  root: {
+    minWidth: 250,
+    minHeight: 250,
+
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+}));
+
 interface CreateAccountPageState {
   username: string;
   password: string;
