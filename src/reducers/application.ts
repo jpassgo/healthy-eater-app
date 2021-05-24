@@ -12,6 +12,12 @@ export default {
         newState.username = action.username;
         newState.password = action.password;
         break;
+      case actions.CREATE_ACCOUNT_PAGE:
+        newState.username = action.username;
+        newState.password = action.password;
+        newState.firstName = action.firstName;
+        newState.lastName = action.lastName;
+        newState.emailAddress = action.emailAddress;
       default:
         newState = state;
     }
@@ -24,4 +30,7 @@ export interface ApplicationState {
   isAuthenticated: boolean;
   username: string,
   password: string,
+  firstName: string,
+  lastName: string,
+  emailAddress: string,
 }
