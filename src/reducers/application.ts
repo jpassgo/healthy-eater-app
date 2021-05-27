@@ -12,12 +12,13 @@ export default {
         newState.username = action.username;
         newState.password = action.password;
         break;
-      case actions.CREATE_ACCOUNT_PAGE:
+      case actions.CREATE_ACCOUNT:
         newState.username = action.username;
         newState.password = action.password;
         newState.firstName = action.firstName;
         newState.lastName = action.lastName;
         newState.emailAddress = action.emailAddress;
+        break;
       default:
         newState = state;
     }
