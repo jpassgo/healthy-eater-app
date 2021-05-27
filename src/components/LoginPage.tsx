@@ -10,14 +10,12 @@ import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import { State } from '../config/store';
 import { loginAttempt } from '../creators/login';
-import authenticateUser from '../services/healthy-eater-api';
 
 const styles = makeStyles(() => ({
   gridContainer: {},
   root: {
     minWidth: 250,
     minHeight: 250,
-
   },
   bullet: {
     display: 'inline-block',
