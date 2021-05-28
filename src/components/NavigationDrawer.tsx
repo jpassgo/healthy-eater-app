@@ -23,11 +23,11 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
   const routes = new Map([
     ['Home', '/'],
     ['Login', '/login'],
-    ['Create Acount', '/create'],
+    ['Create Account', '/create'],
   ]);
 
   const redirect = (route: string): any => {
-    if (props.isAuthenticated || route === 'Login') {
+    if (props.isAuthenticated || route === 'Login' || route === 'Create Account') {
       history.push(`${routes.get(route)}`);
     } else {
       history.push('/login');
