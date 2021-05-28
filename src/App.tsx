@@ -4,11 +4,13 @@ import createMuiTheme, { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { connect } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { Route, Router } from 'react-router';
+import Grid from '@material-ui/core/Grid';
 import NavigationDrawer from './components/NavigationDrawer';
 import { State } from './config/store';
 import LoginPage from './components/LoginPage';
 import routes from './constants/routes';
 import CreateAccountPage from './components/CreateAccountPage';
+import Title from './components/Title';
 
 export function getLightTheme(): Theme {
   return createMuiTheme();
@@ -18,8 +20,22 @@ const history = createBrowserHistory();
 
 const App = (): JSX.Element => (
   <MuiThemeProvider theme={getLightTheme()}>
+
     <Router history={history}>
-      <NavigationDrawer />
+      <Grid
+        container
+        direction="row"
+        alignItems="flex-start"
+        justify="center"
+      >
+        <Grid item xs={5}>
+          <NavigationDrawer />
+        </Grid>
+        <Grid item xs>
+          <Title />
+        </Grid>
+      </Grid>
+
       <Route path={routes.HOME_PAGE} />
       <Route path={routes.LOGIN_PAGE}>
         <LoginPage />
