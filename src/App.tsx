@@ -28,7 +28,7 @@ const App = (): JSX.Element => (
         alignItems="flex-start"
         justify="center"
       >
-        <Grid item xs={5}>
+        <Grid item xs={5} style={{ marginLeft: '2.5%' }}>
           <NavigationDrawer />
         </Grid>
         <Grid item xs>
