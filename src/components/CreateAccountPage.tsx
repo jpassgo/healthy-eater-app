@@ -7,7 +7,9 @@ import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import { Dispatch } from 'redux';
 import { State } from '../config/store';
+import { createAccount } from '../creators/create-account';
 
 const styles = makeStyles(() => ({
   gridContainer: {},
@@ -164,9 +166,11 @@ const mapStateToProps = (state: State): CreateAccountPageProps => ({
     firstName: string, lastName: string, emailAddress: string) => {},
 } as unknown) as CreateAccountPageProps;
 
-const mapDispatchToProps = (): CreateAccountPageProps => ({
+const mapDispatchToProps = (dispatch: Dispatch): CreateAccountPageProps => ({
   handleCreateAccountClick: (username: string, password: string,
-    firstName: string, lastName: string, emailAddress: string) => {},
+    firstName: string, lastName: string, emailAddress: string) => {
+    dispatch(createAccount(username, password, firstName, lastName, emailAddress));
+  },
 
 } as unknown) as CreateAccountPageProps;
 
