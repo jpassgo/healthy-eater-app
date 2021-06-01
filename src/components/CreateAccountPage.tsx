@@ -114,7 +114,7 @@ const CreateAccountPage = (props: CreateAccountPageProps): JSX.Element => {
                 <TextField
                   id="outlined-firstName-input"
                   label="First Name"
-                  name="first name"
+                  name="firstName"
                   variant="outlined"
                   onChange={handleTextChange}
                   value={state.firstName}
@@ -125,7 +125,7 @@ const CreateAccountPage = (props: CreateAccountPageProps): JSX.Element => {
                 <TextField
                   id="outlined-lastName-input"
                   label="Last Name"
-                  name="last name"
+                  name="lastName"
                   variant="outlined"
                   onChange={handleTextChange}
                   value={state.lastName}
@@ -136,7 +136,7 @@ const CreateAccountPage = (props: CreateAccountPageProps): JSX.Element => {
                 <TextField
                   id="outlined-email-input"
                   label="Email Address"
-                  name="email address"
+                  name="emailAddress"
                   variant="outlined"
                   onChange={handleTextChange}
                   value={state.emailAddress}
