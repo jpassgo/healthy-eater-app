@@ -23,3 +23,21 @@ export default function authenticateUser(username: string, password: string): an
       console.error(`Error authenticating user: ${error}`);
     });
 }
+
+export default function createAccount(username: string, password: string, firstName: string, lastName: string, emailAddress: string): any {
+  return fetch(buildUrl(urls.healthyEaterApi, { path: '/accounts'}),
+  {
+    method: 'Post',
+    body: JSON.stringify({ userCredentials: { userName, password }, firstName, lastName, emailAddress}),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((response: Response) => {
+    response.json();
+  })
+  .catch((error: Error) => {
+    console.error(`Error creating an account: ${error}`);
+  });
+}
