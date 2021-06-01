@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { Dispatch } from 'redux';
 import { State } from '../config/store';
-import { createAccount } from '../creators/create-account';
+import { createAccount } from '../services/healthy-eater-api';
 
 const styles = makeStyles(() => ({
   gridContainer: {},
@@ -169,7 +169,7 @@ const mapStateToProps = (state: State): CreateAccountPageProps => ({
 const mapDispatchToProps = (dispatch: Dispatch): CreateAccountPageProps => ({
   handleCreateAccountClick: (username: string, password: string,
     firstName: string, lastName: string, emailAddress: string) => {
-    dispatch(createAccount(username, password, firstName, lastName, emailAddress));
+    createAccount(username, password, firstName, lastName, emailAddress);
   },
 
 } as unknown) as CreateAccountPageProps;
