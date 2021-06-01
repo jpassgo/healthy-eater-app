@@ -5,7 +5,7 @@ interface AuthorizationToken {
   authorization: string,
 }
 
-export default function authenticateUser(username: string, password: string): any {
+export function authenticateUser(username: string, password: string): any {
   const userName = username;
   return fetch(buildUrl(urls.healthyEaterApi, { path: '/authentication' }),
     {
@@ -24,7 +24,8 @@ export default function authenticateUser(username: string, password: string): an
     });
 }
 
-export default function createAccount(username: string, password: string, firstName: string, lastName: string, emailAddress: string): any {
+export function createAccount(userName: string, password: string, firstName: string,
+  lastName: string, emailAddress: string): any {
   return fetch(buildUrl(urls.healthyEaterApi, { path: '/accounts' }),
     {
       method: 'Post',
