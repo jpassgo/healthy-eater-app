@@ -9,7 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import { State } from '../config/store';
-import { loginAttempt } from '../creators/login';
+import { loginError, loginSuccess } from '../creators/login';
+import { authenticateUser } from '../services/healthy-eater-api';
 
 const styles = makeStyles(() => ({
   gridContainer: {},
@@ -117,13 +118,21 @@ export interface LoginPageProps {
   handleLoginClick: (username: string, password: string) => void;
 }
 
-const mapStateToProps = (state: State): LoginPageProps => ({
+const mapStateToProps = (): LoginPageProps => ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleLoginClick: (username: string, password: string) => {},
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): LoginPageProps => ({
   handleLoginClick: (username: string, password: string) => {
-    dispatch(loginAttempt(username, password));
+    console.log('Logging in...');
+    authenticateUser(username, password)
+      .then((response: string) => {
+        dispatch(loginSuccess(response));
+      })
+      .catch((error: Error) => {
+        dispatch(loginError());
+      });
   },
 } as unknown) as LoginPageProps;
 
