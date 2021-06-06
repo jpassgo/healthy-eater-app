@@ -8,10 +8,6 @@ export default {
   ): ApplicationState {
     let newState = { ...state };
     switch (action.type) {
-      case actions.LOGIN_ATTEMPT:
-        newState.username = action.username;
-        newState.password = action.password;
-        break;
       case actions.CREATE_ACCOUNT:
         newState.username = action.username;
         newState.password = action.password;
