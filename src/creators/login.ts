@@ -7,8 +7,9 @@ export const loginAttempt = (username: string, password: string): AnyAction => (
   password,
 });
 
-export const loginSuccess = (): AnyAction => ({
+export const loginSuccess = (token: string): AnyAction => ({
   type: actions.LOGIN_SUCCESS,
+  token,
 });
 
 export const loginError = (): AnyAction => ({
