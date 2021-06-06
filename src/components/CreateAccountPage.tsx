@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Dispatch } from 'redux';
 import { State } from '../config/store';
 import { createAccount } from '../services/healthy-eater-api';
+import { accountCreationSuccessful } from '../creators/create-account';
 
 const styles = makeStyles(() => ({
   gridContainer: {},
@@ -169,7 +170,14 @@ const mapStateToProps = (state: State): CreateAccountPageProps => ({
 const mapDispatchToProps = (dispatch: Dispatch): CreateAccountPageProps => ({
   handleCreateAccountClick: (username: string, password: string,
     firstName: string, lastName: string, emailAddress: string) => {
-    createAccount(username, password, firstName, lastName, emailAddress);
+    createAccount(username, password, firstName, lastName, emailAddress)
+      .then((response: string) => {
+        console.log('Creating account...');
+        dispatch(accountCreationSuccessful(username, response));
+      })
+      .catch((error: Error) => {
+        console.error(`Error authenticating user: ${error}`);
+      });
   },
 
 } as unknown) as CreateAccountPageProps;
