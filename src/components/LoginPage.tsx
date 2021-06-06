@@ -119,16 +119,15 @@ export interface LoginPageProps {
 }
 
 const mapStateToProps = (): LoginPageProps => ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleLoginClick: (username: string, password: string) => {},
+  handleLoginClick: () => {},
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): LoginPageProps => ({
   handleLoginClick: (username: string, password: string) => {
     console.log('Logging in...');
     authenticateUser(username, password)
-      .then((response: string) => {
-        dispatch(loginSuccess(response));
+      .then((token: string) => {
+        dispatch(loginSuccess(token));
       })
       .catch((error: Error) => {
         dispatch(loginError());
