@@ -19,6 +19,13 @@ export default {
         newState.lastName = action.lastName;
         newState.emailAddress = action.emailAddress;
         break;
+      case actions.LOGIN_SUCCESS:
+        newState.token = action.token;
+        newState.isAuthenticated = true;
+        break;
+      case actions.LOGIN_ERROR:
+        newState.isAuthenticated = false;
+        break;
       default:
         newState = state;
     }
@@ -29,6 +36,7 @@ export default {
 
 export interface ApplicationState {
   isAuthenticated: boolean;
+  token: string,
   username: string,
   password: string,
   firstName: string,
