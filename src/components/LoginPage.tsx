@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import { State } from '../config/store';
 import { loginError, loginSuccess } from '../creators/login';
 import { authenticateUser } from '../services/healthy-eater-api';
 
