@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dispatch } from 'redux';
 import {
   Button,
   List,
@@ -12,6 +13,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { useHistory } from 'react-router-dom';
 import MailIcon from '@material-ui/icons/Mail';
 import { State } from '../config/store';
+import { logout } from '../creators/login';
 
 const NavigationDrawer = (props: NavigationDrawerProps) => {
   const history = useHistory();
@@ -29,6 +31,8 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
   const redirect = (route: string): any => {
     if (props.isAuthenticated || route === 'Login' || route === 'Create Account') {
       history.push(`${routes.get(route)}`);
+    } else if (route === 'Logout') {
+      props.logout();
     } else {
       history.push('/login');
     }
@@ -72,7 +76,7 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
             onKeyDown={toggleDrawer(false)}
           >
             <List>
-              {['Home', 'Account', 'Report Meal', 'Calorie Search', 'Login', 'Create Account'].map(
+              {['Home', 'Account', 'Report Meal', 'Calorie Search', 'Login', 'Create Account', 'Logout'].map(
                 (text, index) => (
                   <ListItem button key={text} onClick={() => redirect(text)}>
                     <ListItemIcon>
@@ -92,12 +96,17 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
 
 interface NavigationDrawerProps {
   isAuthenticated: boolean;
+  logout: () => void;
 }
 
 const mapStateToProps = (state: State): NavigationDrawerProps => ({
   isAuthenticated: state.applicationState.isAuthenticated,
 } as unknown) as NavigationDrawerProps;
 
-const mapDispatchToProps = () => ({} as unknown) as NavigationDrawerProps;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  logout: () => {
+    dispatch(logout());
+  },
+} as unknown) as NavigationDrawerProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationDrawer);
