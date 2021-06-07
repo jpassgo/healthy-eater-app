@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { ChangeEvent, useState } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
@@ -66,103 +67,121 @@ const CreateAccountPage = (props: CreateAccountPageProps): JSX.Element => {
   };
 
   return (
+    <>
+      { props.isAuthenticated
+        ? (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: '25vh',
+            }}
+          >
+            You&apos;re logged in and ready to roll!
+          </div>
+        )
+        : (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: '25vh',
+            }}
+          >
+            <Grid
+              container
+              direction="column"
+              alignItems="center"
+              justify="center"
+            >
 
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: '25vh',
-      }}
-    >
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        justify="center"
-      >
+              <Card className={classes.root}>
+                <CardContent>
+                  <Typography className={classes.title} color="textSecondary" gutterBottom>
+                    Healthy Eater
+                  </Typography>
+                  <form>
+                    <Grid item>
+                      <TextField
+                        id="outlined-username-input"
+                        label="Username"
+                        name="username"
+                        variant="outlined"
+                        onChange={handleTextChange}
+                        value={state.username}
+                      />
+                    </Grid>
 
-        <Card className={classes.root}>
-          <CardContent>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-              Healthy Eater
-            </Typography>
-            <form>
-              <Grid item>
-                <TextField
-                  id="outlined-username-input"
-                  label="Username"
-                  name="username"
-                  variant="outlined"
-                  onChange={handleTextChange}
-                  value={state.username}
-                />
-              </Grid>
+                    <Grid item>
+                      <TextField
+                        id="outlined-password-input"
+                        label="Password"
+                        type="password"
+                        name="password"
+                        variant="outlined"
+                        onChange={handleTextChange}
+                        value={state.password}
+                      />
+                    </Grid>
 
-              <Grid item>
-                <TextField
-                  id="outlined-password-input"
-                  label="Password"
-                  type="password"
-                  name="password"
-                  variant="outlined"
-                  onChange={handleTextChange}
-                  value={state.password}
-                />
-              </Grid>
+                    <Grid item>
+                      <TextField
+                        id="outlined-firstName-input"
+                        label="First Name"
+                        name="firstName"
+                        variant="outlined"
+                        onChange={handleTextChange}
+                        value={state.firstName}
+                      />
+                    </Grid>
 
-              <Grid item>
-                <TextField
-                  id="outlined-firstName-input"
-                  label="First Name"
-                  name="firstName"
-                  variant="outlined"
-                  onChange={handleTextChange}
-                  value={state.firstName}
-                />
-              </Grid>
+                    <Grid item>
+                      <TextField
+                        id="outlined-lastName-input"
+                        label="Last Name"
+                        name="lastName"
+                        variant="outlined"
+                        onChange={handleTextChange}
+                        value={state.lastName}
+                      />
+                    </Grid>
 
-              <Grid item>
-                <TextField
-                  id="outlined-lastName-input"
-                  label="Last Name"
-                  name="lastName"
-                  variant="outlined"
-                  onChange={handleTextChange}
-                  value={state.lastName}
-                />
-              </Grid>
+                    <Grid item>
+                      <TextField
+                        id="outlined-email-input"
+                        label="Email Address"
+                        name="emailAddress"
+                        variant="outlined"
+                        onChange={handleTextChange}
+                        value={state.emailAddress}
+                      />
+                    </Grid>
 
-              <Grid item>
-                <TextField
-                  id="outlined-email-input"
-                  label="Email Address"
-                  name="emailAddress"
-                  variant="outlined"
-                  onChange={handleTextChange}
-                  value={state.emailAddress}
-                />
-              </Grid>
-
-              <Grid item>
-                <Button variant="contained" color="secondary" onClick={handleCreateAccountClick}>
-                  Create Account
-                </Button>
-              </Grid>
-            </form>
-          </CardContent>
-        </Card>
-      </Grid>
-    </div>
+                    <Grid item>
+                      <Button variant="contained" color="secondary" onClick={handleCreateAccountClick}>
+                        Create Account
+                      </Button>
+                    </Grid>
+                  </form>
+                </CardContent>
+              </Card>
+            </Grid>
+          </div>
+        )}
+    </>
   );
 };
 
 interface CreateAccountPageProps {
+  isAuthenticated: boolean;
   handleCreateAccountClick: (username: string, password: string,
     firstName: string, lastName: string, emailAddress: string) => {};
 }
 
 const mapStateToProps = (state: State): CreateAccountPageProps => ({
+  isAuthenticated: state.applicationState.isAuthenticated,
   handleCreateAccountClick: (username: string, password: string,
     firstName: string, lastName: string, emailAddress: string) => {},
 } as unknown) as CreateAccountPageProps;
