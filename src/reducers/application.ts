@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { AnyAction } from 'redux';
 import actions from '../actions/actions';
 
@@ -8,14 +9,12 @@ export default {
   ): ApplicationState {
     let newState = { ...state };
     switch (action.type) {
-      case actions.CREATE_ACCOUNT:
-        newState.username = action.username;
-        newState.password = action.password;
-        newState.firstName = action.firstName;
-        newState.lastName = action.lastName;
-        newState.emailAddress = action.emailAddress;
+      case action.CREATE_ACCOUNT:
+        newState.token = action.token;
+        newState.isAuthenticated = true;
         break;
       case actions.LOGIN_SUCCESS:
+        console.log('LOGIN_SUCCESS');
         newState.token = action.token;
         newState.isAuthenticated = true;
         break;
