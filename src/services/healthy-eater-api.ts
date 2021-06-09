@@ -16,9 +16,7 @@ export function authenticateUser(username: string, password: string): any {
         'Content-Type': 'application/json',
       },
     })
-    .then((response: Response) => {
-      response.json();
-    })
+    .then((response: Response) => response.json())
     .catch((error: Error) => {
       console.error(`Error authenticating user: ${error}`);
     });
@@ -37,9 +35,8 @@ export function createAccount(userName: string, password: string, firstName: str
         'Content-Type': 'application/json',
       },
     })
-    .then((response: Response) => {
-      response.json();
-    })
+    .then((response: Response) => response.json())
+    .then((responseData) => responseData)
     .catch((error: Error) => {
       console.error(`Error creating an account: ${error}`);
     });
