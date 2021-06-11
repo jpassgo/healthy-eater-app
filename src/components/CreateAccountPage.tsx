@@ -34,6 +34,7 @@ const styles = makeStyles(() => ({
 }));
 
 interface CreateAccountPageState {
+  accountCreated: boolean;
   username: string;
   password: string;
   firstName: string;
@@ -45,6 +46,7 @@ interface CreateAccountPageState {
 const CreateAccountPage = (props: CreateAccountPageProps): JSX.Element => {
   const classes = styles();
   const [state, setState] = useState<CreateAccountPageState>({
+    accountCreated: false,
     username: '',
     password: '',
     firstName: '',
@@ -62,13 +64,15 @@ const CreateAccountPage = (props: CreateAccountPageProps): JSX.Element => {
   const handleCreateAccountClick = (event: React.MouseEvent<HTMLElement>): void => {
     event.preventDefault();
 
+    state.accountCreated = true;
+
     props.handleCreateAccountClick(state.username, state.password, state.firstName,
       state.lastName, state.emailAddress);
   };
-
+ 
   return (
     <>
-      { props.isAuthenticated
+      { props.isAuthenticated || state.accountCreated
         ? (
           <div
             style={{
@@ -182,8 +186,6 @@ interface CreateAccountPageProps {
 
 const mapStateToProps = (state: State): CreateAccountPageProps => ({
   isAuthenticated: state.applicationState.isAuthenticated,
-  handleCreateAccountClick: (username: string, password: string,
-    firstName: string, lastName: string, emailAddress: string) => {},
 } as unknown) as CreateAccountPageProps;
 
 const mapDispatchToProps = (dispatch: Dispatch): CreateAccountPageProps => ({
