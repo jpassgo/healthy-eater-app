@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { Dispatch } from 'redux';
 import {
@@ -27,6 +28,12 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
     ['Login', '/login'],
     ['Create Account', '/create'],
   ]);
+
+  const links = ['Home', 'Account', 'Report Meal', 'Calorie Search', 'Login', 'Create Account'];
+
+  if (props.isAuthenticated) {
+    links.push('Logout');
+  }
 
   const redirect = (route: string): any => {
     if (props.isAuthenticated || route === 'Login' || route === 'Create Account') {
@@ -76,7 +83,8 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
             onKeyDown={toggleDrawer(false)}
           >
             <List>
-              {['Home', 'Account', 'Report Meal', 'Calorie Search', 'Login', 'Create Account', 'Logout'].map(
+
+              {links.map(
                 (text, index) => (
                   <ListItem button key={text} onClick={() => redirect(text)}>
                     <ListItemIcon>
@@ -96,7 +104,7 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
 
 interface NavigationDrawerProps {
   isAuthenticated: boolean;
-  logout: () => void;
+  logout: () => {};
 }
 
 const mapStateToProps = (state: State): NavigationDrawerProps => ({
