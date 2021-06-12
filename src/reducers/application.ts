@@ -9,7 +9,7 @@ export default {
   ): ApplicationState {
     let newState = { ...state };
     switch (action.type) {
-      case action.CREATE_ACCOUNT:
+      case actions.CREATE_ACCOUNT:
         newState.token = action.token;
         newState.isAuthenticated = true;
         break;
@@ -19,6 +19,9 @@ export default {
         newState.isAuthenticated = true;
         break;
       case actions.LOGIN_ERROR:
+        newState.isAuthenticated = false;
+        break;
+      case actions.LOGOUT:
         newState.isAuthenticated = false;
         break;
       default:
@@ -32,9 +35,4 @@ export default {
 export interface ApplicationState {
   isAuthenticated: boolean;
   token: string,
-  username: string,
-  password: string,
-  firstName: string,
-  lastName: string,
-  emailAddress: string,
 }
