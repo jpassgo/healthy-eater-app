@@ -15,6 +15,7 @@ import { useHistory } from 'react-router-dom';
 import MailIcon from '@material-ui/icons/Mail';
 import { State } from '../config/store';
 import { logout } from '../creators/login';
+import HomeIcon from './HomeIcon';
 
 const NavigationDrawer = (props: NavigationDrawerProps) => {
   const history = useHistory();
@@ -88,7 +89,7 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
                 (text, index) => (
                   <ListItem button key={text} onClick={() => redirect(text)}>
                     <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                      {index % 2 === 0 ? <HomeIcon /> : <MailIcon />}
                     </ListItemIcon>
                     <ListItemText primary={text} />
                   </ListItem>
