@@ -69,7 +69,7 @@ const CreateAccountPage = (props: CreateAccountPageProps): JSX.Element => {
     props.handleCreateAccountClick(state.username, state.password, state.firstName,
       state.lastName, state.emailAddress);
   };
- 
+
   return (
     <>
       { props.isAuthenticated || state.accountCreated
