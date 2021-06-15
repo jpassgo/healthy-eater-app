@@ -28,6 +28,7 @@ const NavigationDrawer = (props: NavigationDrawerProps) => {
     ['Home', '/'],
     ['Login', '/login'],
     ['Create Account', '/create'],
+    ['Report Meal', '/report'],
   ]);
 
   const links = ['Home', 'Account', 'Report Meal', 'Calorie Search', 'Login', 'Create Account'];
