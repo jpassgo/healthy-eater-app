@@ -11,6 +11,7 @@ import LoginPage from './components/LoginPage';
 import routes from './constants/routes';
 import CreateAccountPage from './components/CreateAccountPage';
 import Title from './components/Title';
+import ReportMealsPage from './components/ReportMealsPage';
 
 export function getLightTheme(): Theme {
   return createMuiTheme();
@@ -42,6 +43,9 @@ const App = (): JSX.Element => (
       </Route>
       <Route path={routes.CREATE_ACCOUNT_PAGE}>
         <CreateAccountPage />
+      </Route>
+      <Route path={routes.REPORT_MEALS_PAGE}>
+        <ReportMealsPage />
       </Route>
     </Router>
   </MuiThemeProvider>
