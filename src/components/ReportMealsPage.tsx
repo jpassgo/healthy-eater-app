@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import { State } from '../config/store';
 import LoginPage from './LoginPage';
+import Meal from '../models/meal';
 
 const styles = makeStyles(() => ({
   gridContainer: {},
@@ -116,6 +117,7 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
 
 export interface ReportMealsPageProps {
   isAuthenticated: boolean;
+  reportMeal: (meal: Meal) => {};
 }
 
 const mapStateToProps = (state: State): ReportMealsPageProps => (
@@ -123,9 +125,10 @@ const mapStateToProps = (state: State): ReportMealsPageProps => (
     isAuthenticated: state.applicationState.isAuthenticated,
   });
 
-const mapDispatchToProps = (dispatch: Dispatch): ReportMealsPageProps => (
-  {
+const mapDispatchToProps = (dispatch: Dispatch): ReportMealsPageProps => ({
+    reportMeal(meal: Meal): => {
 
+    },
   } as unknown) as ReportMealsPageProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReportMealsPage);
