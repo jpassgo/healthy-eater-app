@@ -1,5 +1,6 @@
 import buildUrl from 'build-url';
 import urls from '../constants/urls';
+import Meal from '../models/meal';
 
 interface AuthorizationToken {
   authorization: string,
@@ -40,4 +41,21 @@ export function createAccount(userName: string, password: string, firstName: str
     .catch((error: Error) => {
       console.error(`Error creating an account: ${error}`);
     });
+}
+
+export function reportMeal(meal: Meal, token: String) {
+  return fetch(buildUrl(urls.healthyEaterApi, { path: '/meals' }), 
+  {
+    method: 'Post',
+    body: JSON.stringify(meal),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  .then((response: Response) => response)
+  .catch((error: Error) => {
+    console.error(`Error reporting meal: ${error}`);
+  });
 }
