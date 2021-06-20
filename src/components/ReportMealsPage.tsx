@@ -9,7 +9,10 @@ import {
 import { connect } from 'react-redux';
 import { State } from '../config/store';
 import LoginPage from './LoginPage';
-import Meal from '../models/meal';
+import Meal from '../models/Meal';
+import { reportMeal } from '../services/healthy-eater-api';
+import Food from '../models/Food';
+import { mealReported } from '../creators/report-meal';
 
 const styles = makeStyles(() => ({
   gridContainer: {},
@@ -51,6 +54,20 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
 
   const handleLoginClick = (event: React.MouseEvent<HTMLElement>): void => {
     event.preventDefault();
+
+    const mealContents: Food[] = [{
+      name: 'Blue Berry',
+      caloricValue: 100,
+    }];
+
+    const meal: Meal = {
+      userId: 1,
+      meal: mealContents,
+      caloricValue: 100,
+      date: new Date('2022-01-01'),
+    };
+
+    reportMeal(meal, props.authToken);
   };
 
   return (
@@ -117,18 +134,26 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
 
 export interface ReportMealsPageProps {
   isAuthenticated: boolean;
+  authToken: string;
   reportMeal: (meal: Meal) => {};
 }
 
 const mapStateToProps = (state: State): ReportMealsPageProps => (
   {
     isAuthenticated: state.applicationState.isAuthenticated,
-  });
+    authToken: state.applicationState.authToken,
+  } as unknown) as ReportMealsPageProps;
 
 const mapDispatchToProps = (dispatch: Dispatch): ReportMealsPageProps => ({
-    reportMeal(meal: Meal): => {
-
-    },
-  } as unknown) as ReportMealsPageProps;
+  reportMeals: (meal: Meal, authToken: String) => {
+    reportMeal(meal, authToken)
+      .then(() => {
+        dispatch(mealReported());
+      })
+      .catch((error: Error) => {
+        console.error(`${error}`);
+      });
+  },
+} as unknown) as ReportMealsPageProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReportMealsPage);
