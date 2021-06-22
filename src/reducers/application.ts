@@ -15,7 +15,7 @@ export default {
         break;
       case actions.LOGIN_SUCCESS:
         console.log('LOGIN_SUCCESS');
-        newState.authToken = action.authToken;
+        newState.authToken = action.token;
         newState.isAuthenticated = true;
         break;
       case actions.LOGIN_ERROR:
