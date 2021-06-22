@@ -10,12 +10,12 @@ export default {
     let newState = { ...state };
     switch (action.type) {
       case actions.CREATE_ACCOUNT:
-        newState.token = action.token;
+        newState.authToken = action.authToken;
         newState.isAuthenticated = true;
         break;
       case actions.LOGIN_SUCCESS:
         console.log('LOGIN_SUCCESS');
-        newState.token = action.token;
+        newState.authToken = action.authToken;
         newState.isAuthenticated = true;
         break;
       case actions.LOGIN_ERROR:
@@ -34,5 +34,5 @@ export default {
 
 export interface ApplicationState {
   isAuthenticated: boolean;
-  token: string,
+  authToken: string,
 }
