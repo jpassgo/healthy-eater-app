@@ -85,7 +85,7 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
         >
           <Grid
             container
-            direction="column"
+            direction="row"
             alignItems="center"
             justify="center"
           >
@@ -100,7 +100,7 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
                     <TextField
                       id="outlined-username-input"
                       label="Name"
-                      name="username"
+                      name="name"
                       variant="outlined"
                       onChange={handleTextChange}
                       value={state.name}
@@ -111,7 +111,7 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
                     <TextField
                       id="outlined-password-input"
                       label="Caloric Value"
-                      name="calories"
+                      name="caloricValue"
                       variant="outlined"
                       onChange={handleTextChange}
                       value={state.caloricValue}
@@ -145,7 +145,8 @@ const mapStateToProps = (state: State): ReportMealsPageProps => (
   } as unknown) as ReportMealsPageProps;
 
 const mapDispatchToProps = (dispatch: Dispatch): ReportMealsPageProps => ({
-  reportMeals: (meal: Meal, authToken: String) => {
+  reportMeals: (meal: Meal, authToken: string) => {
+    // eslint-disable-next-line @typescript-eslint/semi
     reportMeal(meal, authToken)
       .then(() => {
         dispatch(mealReported());
