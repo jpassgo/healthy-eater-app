@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/destructuring-assignment */
 import Grid from '@material-ui/core/Grid';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, Fragment, useState } from 'react';
 import { Dispatch } from 'redux';
 import Card from '@material-ui/core/Card/Card';
 import {
@@ -76,60 +76,57 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: '25vh',
-      }}
-    >
-      { !props.isAuthenticated ? (
-        <LoginPage />
-      ) : (
-        state.inputsList.map((val: any, idx: number) => (        
-            <Grid
-              container
-              direction="row"
-              alignItems="center"
-              justify="center"
-            >
-              <Card className={classes.root}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Report Meals
-                  </Typography>
-                  <form>
-                    <Grid item>
-                      <TextField
-                        id="outlined-username-input"
-                        data-id={idx}
-                        label="Name"
-                        name="name"
-                        variant="outlined"
-                        key={idx}
-                        onChange={handleTextChange}
-                        value={val.name}
-                      />
-                    </Grid>
+    <Fragment>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: '25vh',
+        }}
+      >
+        { !props.isAuthenticated ? (
+          <LoginPage />
+        ) : (
+          <Grid
+            container
+            direction="row"
+            alignItems="center"
+            justify="center"
+          >        
+          <Card className={classes.root}>
+              <CardContent>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                  Report Meals
+                </Typography>
+                <form>
+            {state.inputsList.map((val: any, idx: number) => (                            
+                <Grid item>
+                  <TextField
+                    id="outlined-username-input"
+                    data-id={idx}
+                    label="Name"
+                    name="name"
+                    variant="outlined"
+                    key={idx}
+                    onChange={handleTextChange}
+                    value={val.name}
+                  />
+                </Grid>
 
-                    <Grid item>
-                      <TextField
-                        id="outlined-password-input"
-                        data-id={idx}
-                        label="Caloric Value"
-                        name="caloricValue"
-                        variant="outlined"
-                        key={idx}
-                        onChange={handleTextChange}
-                        value={val.caloricValue}
-                      />
-                    </Grid>
-                  </form>
-                </CardContent>
-              </Card>
-            </Grid>
-            );
+                <Grid item>
+                  <TextField
+                    id="outlined-password-input"
+                    data-id={idx}
+                    label="Caloric Value"
+                    name="caloricValue"
+                    variant="outlined"
+                    key={idx}
+                    onChange={handleTextChange}
+                    value={val.caloricValue}
+                  />
+                </Grid>              
+            ))}
             <Grid item>
               <Button variant="contained" color="secondary" onClick={addInput}>
                 Add Food
@@ -139,9 +136,14 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
               <Button variant="contained" color="secondary" onClick={handleLoginClick}>
                 Submit
               </Button>
-            </Grid>        
-        )))
-    </div>
+            </Grid>
+            </form>
+            </CardContent>
+          </Card>
+        </Grid>
+        )}      
+      </div>
+    </Fragment>
   );
 };
 
