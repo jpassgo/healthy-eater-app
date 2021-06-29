@@ -10,7 +10,6 @@ import {
   SwipeableDrawer,
 } from '@material-ui/core';
 import { connect } from 'react-redux';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { useHistory } from 'react-router-dom';
 import MailIcon from '@material-ui/icons/Mail';
 import { State } from '../config/store';
