@@ -63,7 +63,7 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
       userId: 1,
       meal: mealContents,
       caloricValue: 100,
-      date: new Date('2022-01-01'),
+      date: new Date(),
     };
 
     reportMeal(meal, props.authToken);
@@ -71,12 +71,12 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
 
   const addInput = () => {
     setState((prevState) => ({
-      inputsList: [...prevState.inputsList, { name: '', caloricValue: '' }],
+      inputsList: [...prevState.inputsList, { name: '', caloricValue: 0 }],
     }));
   };
 
   return (
-    <Fragment>
+    <>
       <div
         style={{
           display: 'flex',
@@ -93,57 +93,59 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
             direction="row"
             alignItems="center"
             justify="center"
-          >        
-          <Card className={classes.root}>
+          >
+            <Card className={classes.root}>
               <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                   Report Meals
                 </Typography>
                 <form>
-            {state.inputsList.map((val: any, idx: number) => (                            
-                <Grid item>
-                  <TextField
-                    id="outlined-username-input"
-                    data-id={idx}
-                    label="Name"
-                    name="name"
-                    variant="outlined"
-                    key={idx}
-                    onChange={handleTextChange}
-                    value={val.name}
-                  />
-                </Grid>
+                  {state.inputsList.map((val: any, idx: number) => (
+                    <>
+                      <Grid item>
+                        <TextField
+                          id="outlined-username-input"
+                          data-id={idx}
+                          label="Name"
+                          name="name"
+                          variant="outlined"
+                          key={idx}
+                          onChange={handleTextChange}
+                          value={val.name}
+                        />
+                      </Grid>
 
-                <Grid item>
-                  <TextField
-                    id="outlined-password-input"
-                    data-id={idx}
-                    label="Caloric Value"
-                    name="caloricValue"
-                    variant="outlined"
-                    key={idx}
-                    onChange={handleTextChange}
-                    value={val.caloricValue}
-                  />
-                </Grid>              
-            ))}
-            <Grid item>
-              <Button variant="contained" color="secondary" onClick={addInput}>
-                Add Food
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button variant="contained" color="secondary" onClick={handleLoginClick}>
-                Submit
-              </Button>
-            </Grid>
-            </form>
-            </CardContent>
-          </Card>
-        </Grid>
-        )}      
+                      <Grid item>
+                        <TextField
+                          id="outlined-password-input"
+                          data-id={idx}
+                          label="Caloric Value"
+                          name="caloricValue"
+                          variant="outlined"
+                          key={idx}
+                          onChange={handleTextChange}
+                          value={val.caloricValue}
+                        />
+                      </Grid>
+                    </>
+                  ))}
+                  <Grid item>
+                    <Button variant="contained" color="secondary" onClick={addInput}>
+                      Add Food
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="contained" color="secondary" onClick={handleLoginClick}>
+                      Submit
+                    </Button>
+                  </Grid>
+                </form>
+              </CardContent>
+            </Card>
+          </Grid>
+        )}
       </div>
-    </Fragment>
+    </>
   );
 };
 
