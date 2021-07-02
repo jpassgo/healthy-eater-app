@@ -71,7 +71,7 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
 
   const addInput = () => {
     setState((prevState) => ({
-      inputsList: [...prevState.inputsList, { name: '', caloricValue: 0 }],
+      inputsList: [...prevState.inputsList, { name: '', caloricValue: '' }],
     }));
   };
 
@@ -104,12 +104,12 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
                     <>
                       <Grid item>
                         <TextField
-                          id="outlined-username-input"
-                          data-id={idx}
+                          id={`name-${idx}`}
+                          data-id={`name-${idx}`}
                           label="Name"
-                          name="name"
+                          name={`name-${idx}`}
                           variant="outlined"
-                          key={idx}
+                          key={`name-${idx}`}
                           onChange={handleTextChange}
                           value={val.name}
                         />
@@ -117,12 +117,12 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
 
                       <Grid item>
                         <TextField
-                          id="outlined-password-input"
-                          data-id={idx}
+                          id={`caloricValue-${idx}`}
+                          data-id={`caloricValue-${idx}`}
                           label="Caloric Value"
-                          name="caloricValue"
+                          name={`caloricValue-${idx}`}
                           variant="outlined"
-                          key={idx}
+                          key={`caloricValue-${idx}`}
                           onChange={handleTextChange}
                           value={val.caloricValue}
                         />
