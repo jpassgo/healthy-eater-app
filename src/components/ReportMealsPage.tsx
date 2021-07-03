@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/destructuring-assignment */
 import Grid from '@material-ui/core/Grid';
@@ -45,10 +46,28 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
   });
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value,
-    });
+    console.log(`Event: ${event.target.name}`);
+    console.log(`Value: ${event.target.value}`);
+
+    let inputsList = [...state.inputsList];
+    let index = 0;
+    let resultOfSplit;
+    if (event.target.name.includes('name')) {
+      resultOfSplit = event.target.name.split('name-');
+      // eslint-disable-next-line radix
+      index = parseInt(resultOfSplit[1]);
+      console.log(`Index: ${index}`);
+    } else {
+      resultOfSplit = event.target.name.split('caloricValue-');
+      // eslint-disable-next-line radix
+      index = parseInt(resultOfSplit[1]);
+      console.log(`Index: ${index}`);
+    }
+
+    console.log(`Current Value: ${inputsList[index][event.target.name]}`);
+    inputsList[index][event.target.name] = event.target.value;
+    console.log(`Current Value: ${inputsList[index][event.target.name]}`);
+    setState({ inputsList });
   };
 
   const handleLoginClick = (event: React.MouseEvent<HTMLElement>): void => {
