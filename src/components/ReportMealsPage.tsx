@@ -49,7 +49,7 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
     console.log(`Event: ${event.target.name}`);
     console.log(`Value: ${event.target.value}`);
 
-    let inputsList = [...state.inputsList];
+    const inputsList = [...state.inputsList];
     let index = 0;
     let resultOfSplit;
     if (event.target.name.includes('name')) {
