@@ -60,3 +60,18 @@ export function reportMeal(meal: Meal, authToken: String) {
       console.error(`Error reporting meal: ${error}`);
     });
 }
+
+export function retrieveAccountDetails(userName: string, authorizationToken: string) {
+  return fetch(buildUrl(urls.healthyEaterApi, { path: `/accounts?userName=${userName}` }),
+    {
+      method: 'Get',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: authorizationToken,
+      },
+    }).then((response: Response) => response)
+    .catch((error: Error) => {
+      console.error(`Error retrieving account: ${error}`);
+    });
+}
