@@ -1,9 +1,11 @@
+/* eslint-disable radix */
 /* eslint-disable prefer-template */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-console */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/destructuring-assignment */
+// eslint-disable-next-line radix
 import Grid from '@material-ui/core/Grid';
 import React, { ChangeEvent, Fragment, useState } from 'react';
 import { Dispatch } from 'redux';
@@ -49,28 +51,10 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
   });
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(`Event: ${event.target.name}`);
-    console.log(`Value: ${event.target.value}`);
+    const resultOfSplit = event.target.name.split('-');
+    const index = parseInt(resultOfSplit[1]);
 
-    // eslint-disable-next-line prefer-const
-    let inputsList = [...state.inputsList];
-    let index = 0;
-    let resultOfSplit;
-    if (event.target.name.includes('name')) {
-      resultOfSplit = event.target.name.split('name-');
-      // eslint-disable-next-line radix
-      index = parseInt(resultOfSplit[1]);
-      console.log(`Index: ${index}`);
-    } else {
-      resultOfSplit = event.target.name.split('caloricValue-');
-      // eslint-disable-next-line radix
-      index = parseInt(resultOfSplit[1]);
-      console.log(`Index: ${index}`);
-    }
-
-    console.log(`Current Value: ${inputsList[index][event.target.name]}`);
-    inputsList[index][event.target.name] = event.target.value;
-    console.log(`Current Value: ${inputsList[index][event.target.name]}`);
+    state.inputsList[index][event.target.name] = event.target.value;
   };
 
   const handleLoginClick = (event: React.MouseEvent<HTMLElement>): void => {
