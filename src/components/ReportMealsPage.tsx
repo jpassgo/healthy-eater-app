@@ -1,3 +1,6 @@
+/* eslint-disable prefer-template */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-console */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/destructuring-assignment */
@@ -42,14 +45,15 @@ interface ReportMealsPageState {
 const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
   const classes = styles();
   const [state, setState] = useState<ReportMealsPageState>({
-    inputsList: [{ name: '', caloricValue: 0 }],
+    inputsList: [{ 'name-0': '', 'caloricValue-0': 0 }],
   });
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     console.log(`Event: ${event.target.name}`);
     console.log(`Value: ${event.target.value}`);
 
-    const inputsList = [...state.inputsList];
+    // eslint-disable-next-line prefer-const
+    let inputsList = [...state.inputsList];
     let index = 0;
     let resultOfSplit;
     if (event.target.name.includes('name')) {
@@ -67,7 +71,6 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
     console.log(`Current Value: ${inputsList[index][event.target.name]}`);
     inputsList[index][event.target.name] = event.target.value;
     console.log(`Current Value: ${inputsList[index][event.target.name]}`);
-    setState({ inputsList });
   };
 
   const handleLoginClick = (event: React.MouseEvent<HTMLElement>): void => {
@@ -89,8 +92,9 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
   };
 
   const addInput = () => {
+    const index = state.inputsList.length - 1;
     setState((prevState) => ({
-      inputsList: [...prevState.inputsList, { name: '', caloricValue: '' }],
+      inputsList: [...prevState.inputsList, { [`name` + index]: '', [`caloricValue` + index]: 0 }],
     }));
   };
 
