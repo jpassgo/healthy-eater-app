@@ -144,7 +144,7 @@ const mapDispatchToProps = (dispatch: Dispatch): LoginPageProps => ({
     console.log('Logging in...');
     authenticateUser(username, password)
       .then((token: any) => {
-        dispatch(loginSuccess(token.authorization));
+        dispatch(loginSuccess(token.authorization, username));
       })
       .catch((error: Error) => {
         dispatch(loginError());
