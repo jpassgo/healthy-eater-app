@@ -90,7 +90,7 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
       mealContents.push({
         name: map.get(keys.next()),
         caloricValue: value,
-      });      
+      });
     });
 
     const meal: Meal = {
