@@ -65,6 +65,34 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
       caloricValue: 100,
     }];
 
+    let caloricSum: number;
+
+    state.inputsList.forEach((map: Map<string, any>) => {
+      map.forEach((key: string, value: any) => {
+        if (!Number.isNaN(value)) {
+          caloricSum += value;
+        }
+
+        mealContents.push({
+          name: key,
+          caloricValue: value,
+        });
+      });
+    });
+
+    state.inputsList.forEach((map: Map<string, any>) => {
+      const keys = map.keys();
+
+      // if (!Number.isNaN(value)) {
+      //   caloricSum += value;
+      // }
+
+      mealContents.push({
+        name: map.get(keys.next()),
+        caloricValue: value,
+      });      
+    });
+
     const meal: Meal = {
       userId: 1,
       meal: mealContents,
