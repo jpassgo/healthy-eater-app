@@ -60,43 +60,28 @@ const ReportMealsPage = (props: ReportMealsPageProps): JSX.Element => {
   const handleLoginClick = (event: React.MouseEvent<HTMLElement>): void => {
     event.preventDefault();
 
-    const mealContents: Food[] = [{
-      name: 'Blue Berry',
-      caloricValue: 100,
-    }];
+    const mealContents: Food[] = [];
 
-    let caloricSum: number;
+    let caloricSum: number = 0;
 
     state.inputsList.forEach((map: Map<string, any>) => {
-      map.forEach((key: string, value: any) => {
-        if (!Number.isNaN(value)) {
-          caloricSum += value;
-        }
+      const values = Object.values(map);
 
-        mealContents.push({
-          name: key,
-          caloricValue: value,
-        });
-      });
-    });
+      const name = values[0];
+      const caloricValue = values[1];
 
-    state.inputsList.forEach((map: Map<string, any>) => {
-      const keys = map.keys();
-
-      // if (!Number.isNaN(value)) {
-      //   caloricSum += value;
-      // }
+      caloricSum += parseInt(caloricValue);
 
       mealContents.push({
-        name: map.get(keys.next()),
-        caloricValue: value,
+        name,
+        caloricValue,
       });
     });
 
     const meal: Meal = {
       userId: 1,
       meal: mealContents,
-      caloricValue: 100,
+      caloricValue: caloricSum,
       date: new Date(),
     };
 
