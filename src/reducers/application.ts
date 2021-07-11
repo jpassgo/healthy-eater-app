@@ -23,6 +23,7 @@ export default {
       case actions.LOGIN_ERROR:
         console.log('LOGIN_ERROR');
         newState.isAuthenticated = false;
+        newState.isLoginErrorPresent = true;
         break;
       case actions.LOGOUT:
         console.log('LOGOUT');
@@ -38,6 +39,7 @@ export default {
 
 export interface ApplicationState {
   isAuthenticated: boolean;
-  authToken: string,
-  userName: string,
+  isLoginErrorPresent: boolean;
+  authToken: string;
+  userName: string;
 }
