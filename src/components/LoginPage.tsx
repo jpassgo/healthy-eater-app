@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Dispatch } from 'redux';
 import Grid from '@material-ui/core/Grid';
-
+import Alert from '@material-ui/lab/Alert';
 import Card from '@material-ui/core/Card';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -119,6 +119,11 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
                       Login
                     </Button>
                   </Grid>
+                  <Grid item>
+                    { props.isLoginErrorPresent
+                      ? <Alert severity="error">Incorrect username or password.</Alert>
+                      : <div /> }
+                  </Grid>
                 </form>
               </CardContent>
             </Card>
@@ -131,11 +136,13 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
 
 export interface LoginPageProps {
   isAuthenticated: boolean;
+  isLoginErrorPresent: boolean;
   handleLoginClick: (username: string, password: string) => void;
 }
 
 const mapStateToProps = (state: State): LoginPageProps => ({
   isAuthenticated: state.applicationState.isAuthenticated,
+  isLoginErrorPresent: state.applicationState.isLoginErrorPresent,
   handleLoginClick: () => {},
 });
 
