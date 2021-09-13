@@ -48,6 +48,7 @@ const App = (): JSX.Element => (
         <ReportMealsPage />
       </Route>
     </Router>
+    <LoginPage />
   </MuiThemeProvider>
 );
 
